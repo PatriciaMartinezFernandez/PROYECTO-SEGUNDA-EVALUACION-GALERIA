@@ -20,11 +20,11 @@ Cuenta con todas las opciones de gestión y listado descritas abajo.
    
 La gestión se basa en la creación, eliminación y edición de los artículos.
 
-5. Listar artículos.
+4. Listar artículos.
 
 Imprimir los artíclos como se indique, desordenados, ordenados por nombre año o autor y los artículos que ya han sido subastados.
 
-7. Control de artículos.
+5. Control de artículos.
 
 Los artículos pueden estar guardados en el almacén, expuestos en la galería o vendidos en una subasta.
    
