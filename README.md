@@ -9,6 +9,7 @@ Realizar un programa que gestione una galería de arte con opción a subasta
 2. Gestionar artículos.
 3. Listar artículos.
 4. Control de artículos.
+5. Subastas
 
 ## Análisis
 
@@ -27,4 +28,7 @@ Imprimir los artíclos como se indique, desordenados, ordenados por nombre año 
 4. Control de artículos.
 
 Los artículos pueden estar guardados en el almacén, expuestos en la galería o vendidos en una subasta.
-   
+
+5. Subastas
+
+Iniciar subastas en las que los artículos subastables pueden ser vendidos, saldrán ciclicamente en grupos de 5 artículos y aleatoriamente se venderá uno de ellos.
