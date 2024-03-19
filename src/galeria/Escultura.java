@@ -18,7 +18,7 @@ public class Escultura extends Articulo implements Subastable {
 	@Override
 	public boolean articuloSubastable() {
 
-		String respuesta = null;
+		String respuesta = "";
 
 		System.out.print("¿Esta escultura es subastable? (y/n): ");
 		respuesta = sc.nextLine();
@@ -39,7 +39,7 @@ public class Escultura extends Articulo implements Subastable {
 
 	@Override
 	public String toString() {
-	return "- Escultura | " + super.toString() + "Material: " + material;
+	return "\n===== ESCULTURA =====\n" + super.toString() + "\nMaterial: " + material + "\n=====================";
 	}
 
 }

@@ -40,11 +40,11 @@ public class Galeria {
 		System.out.println("2) Escultura");
 		System.out.println("=======================");
 		menu = sc.nextInt();
+		sc.nextLine();
 
 		if (menu == 1) {
 
 			System.out.print("Nombre del cuadro: ");
-			nombre = sc.nextLine();
 			nombre = sc.nextLine();
 			System.out.print("Autor del cuadro: ");
 			autor = sc.nextLine();
@@ -97,7 +97,7 @@ public class Galeria {
 
 			articulos[articulos.length - 1] = new Cuadro(nombre, autor, anio, descripcion, precio, tecnica);
 
-			cuadro.articuloSubastable();
+			articulos[articulos.length - 1].setSubastable(cuadro.articuloSubastable());
 
 			System.out.println("=======================");
 
@@ -158,7 +158,7 @@ public class Galeria {
 
 			articulos[articulos.length - 1] = new Escultura(nombre, autor, anio, descripcion, precio, material);
 
-			escultura.articuloSubastable();
+			articulos[articulos.length - 1].setSubastable(escultura.articuloSubastable());
 
 			System.out.println("=======================");
 
@@ -401,28 +401,241 @@ public class Galeria {
 			}
 		}
 
-		System.out.println("=======================");
 	}
 
 	public void listarOrdenadoPorNombre() {
 
-		int menu = 0, i = 0;
+		int menu = 0;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
+		} else {
+
+			System.out.println("=======================");
+			System.out.println("1) Ascendentemente");
+			System.out.println("2) Descendentemente");
+			System.out.println("=======================");
+			menu = sc.nextInt();
+			sc.nextLine();
+
+			if (menu == 1) {
+				ordenadoAscendente();
+			} else if (menu == 2) {
+				ordenadoDescendente();
+			} else {
+				System.out.println("Opción inválida");
+			}
+		}
+
+	}
+
+	private void ordenadoAscendente() {
+
 		Articulo[] ascendente = articulos;
+
+		for (int i = 0; i < ascendente.length - 1; i++) {
+			for (int j = 0; j < ascendente.length - i - 1; j++) {
+				if (ascendente[j].getNombre().compareTo(ascendente[j + 1].getNombre()) > 0) {
+					Articulo temp = ascendente[j];
+					ascendente[j] = ascendente[j + 1];
+					ascendente[j + 1] = temp;
+				}
+			}
+		}
+		for (Articulo articulo : ascendente) {
+			System.out.println(articulo);
+		}
+
+	}
+
+	private void ordenadoDescendente() {
+
 		Articulo[] descendente = articulos;
 
-		System.out.println("=======================");
-		System.out.println("1) Ascendentemente");
-		System.out.println("2) Descendentemente");
-		System.out.println("=======================");
-		menu = sc.nextInt();
-		sc.nextLine();
+		for (int i = 0; i < descendente.length - 1; i++) {
+			for (int j = 0; j < descendente.length - i - 1; j++) {
+				if (descendente[j].getNombre().compareTo(descendente[j + 1].getNombre()) < 0) {
+					Articulo temp = descendente[j];
+					descendente[j] = descendente[j + 1];
+					descendente[j + 1] = temp;
+				}
+			}
+		}
+		for (Articulo articulo : descendente) {
+			System.out.println(articulo);
 
-		if (menu == 1) {
+		}
+	}
 
-		} else if (menu == 2) {
+	public void listarOrdenadoPorAnio() {
 
+		Articulo[] ordenado = articulos;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
 		} else {
-			System.out.println("Opción inválida");
+
+			for (int i = 0; i < ordenado.length - 1; i++) {
+				for (int j = 0; j < ordenado.length - i - 1; j++) {
+					if (ordenado[j].getAnio() > ordenado[j + 1].getAnio()) {
+						Articulo temp = ordenado[j];
+						ordenado[j] = ordenado[j + 1];
+						ordenado[j + 1] = temp;
+					}
+				}
+			}
+			for (Articulo articulo : ordenado) {
+				System.out.println(articulo);
+			}
+		}
+	}
+
+	public void listarOrdenadoPorAutor() {
+
+		Articulo[] ordenado = articulos;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
+		} else {
+
+			for (int i = 0; i < ordenado.length - 1; i++) {
+				for (int j = 0; j < ordenado.length - i - 1; j++) {
+					if (ordenado[j].getAutor().compareTo(ordenado[j + 1].getAutor()) < 0) {
+						Articulo temp = ordenado[j];
+						ordenado[j] = ordenado[j + 1];
+						ordenado[j + 1] = temp;
+					}
+				}
+			}
+			for (Articulo articulo : ordenado) {
+				System.out.println(articulo);
+
+			}
+		}
+	}
+
+	public void listarAlmacen() {
+		int contadorAlmacen = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_ALMACEN)) {
+				contadorAlmacen++;
+			}
+		}
+
+		Articulo[] almacen = new Articulo[contadorAlmacen];
+
+		int indiceAlmacen = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_ALMACEN)) {
+				almacen[indiceAlmacen] = articulo;
+				indiceAlmacen++;
+			}
+		}
+
+		if (contadorAlmacen == 0) {
+			System.out.println("No hay artículos en el almacén");
+		} else {
+			System.out.println("Artículos en el almacén:");
+			for (Articulo articulo : almacen) {
+				System.out.println(articulo);
+			}
+		}
+	}
+
+	public void listarExposicion() {
+
+		int contadorExposicion = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+				contadorExposicion++;
+			}
+		}
+
+		Articulo[] exposicion = new Articulo[contadorExposicion];
+
+		int indiceExposicion = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+				exposicion[indiceExposicion] = articulo;
+				indiceExposicion++;
+			}
+		}
+
+		if (contadorExposicion == 0) {
+			System.out.println("No hay artículos en la exposición");
+		} else {
+			System.out.println("Artículos en la exposición:");
+			for (Articulo articulo : exposicion) {
+				System.out.println(articulo);
+			}
+		}
+
+	}
+
+	public void listarVendidos() {
+
+		int contadorVendidos = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+				contadorVendidos++;
+			}
+		}
+
+		Articulo[] vendidos = new Articulo[contadorVendidos];
+
+		int indiceVendidos = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+				vendidos[indiceVendidos] = articulo;
+				indiceVendidos++;
+			}
+		}
+
+		if (contadorVendidos == 0) {
+			System.out.println("No hay artículos vendidos");
+		} else {
+			System.out.println("Artículos que han sido vendidos en una subasta:");
+			for (Articulo articulo : vendidos) {
+				System.out.println(articulo);
+			}
+		}
+
+	}
+
+	public void listarSubastables() {
+
+		int contadorSubastables = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.isSubastable() == true) {
+				contadorSubastables++;
+			}
+		}
+
+		Articulo[] subastables = new Articulo[contadorSubastables];
+
+		int indiceSubastables = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.isSubastable() == true) {
+				subastables[indiceSubastables] = articulo;
+				indiceSubastables++;
+			}
+		}
+
+		if (contadorSubastables == 0) {
+			System.out.println("No hay artículos subastables");
+		} else {
+			System.out.println("Artículos son subastables:");
+			for (Articulo articulo : subastables) {
+				System.out.println(articulo);
+			}
 		}
 
 	}

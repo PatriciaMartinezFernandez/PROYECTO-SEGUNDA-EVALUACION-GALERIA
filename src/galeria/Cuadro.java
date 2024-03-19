@@ -18,7 +18,7 @@ public class Cuadro extends Articulo implements Subastable {
 	@Override
 	public boolean articuloSubastable() {
 
-		String respuesta = null;
+		String respuesta = "";
 
 		System.out.print("¿Este cuadro es subastable? (y/n): ");
 		respuesta = sc.nextLine();
@@ -39,7 +39,7 @@ public class Cuadro extends Articulo implements Subastable {
 
 	@Override
 	public String toString() {
-		return "- Cuadro    | " + super.toString() + "Técnica: " + tecnica;
+		return "\n======= CUADRO =======\n" + super.toString() + "\nTécnica: " + tecnica + "\n=======================";
 	}
 
 }

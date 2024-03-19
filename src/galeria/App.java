@@ -84,7 +84,8 @@ public class App {
 					System.out.println("5) Listar artículos guardados en almacén");
 					System.out.println("6) Listar artículos expuestos en galería");
 					System.out.println("7) Listar artículos vendidos en subastas");
-					System.out.println("8) Volver");
+					System.out.println("8) Listar artículos subastables");
+					System.out.println("9) Volver");
 					System.out.println("=======================");
 					menu = sc.nextInt();
 					sc.nextLine();
@@ -98,7 +99,43 @@ public class App {
 					case 1:
 						galeria.listarDesordenado();
 						break;
+
+					case 2:
+						galeria.listarOrdenadoPorNombre();
+						break;
+
+					case 3:
+						galeria.listarOrdenadoPorAnio();
+						break;
+
+					case 4:
+						galeria.listarOrdenadoPorAutor();
+						break;
+
+					case 5:
+						galeria.listarAlmacen();
+						break;
+
+					case 6:
+						galeria.listarExposicion();
+						break;
+
+					case 7:
+						galeria.listarVendidos();
+						break;
+
+					case 8:
+						galeria.listarSubastables();
+						break;
+
+					case 9:
+						break;
+
 					}
+					break;
+
+				case 3:
+					galeria.iniciarSubasta();
 					break;
 
 				case 4:

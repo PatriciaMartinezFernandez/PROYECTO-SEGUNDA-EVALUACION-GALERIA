@@ -27,6 +27,7 @@ public abstract class Articulo {
 		this.precio = precio;
 		this.estado = Estado.EN_ALMACEN;
 		this.fechaVenta = null;
+		this.subastable = false;
 	}
 
 	// Getters y setters
@@ -96,9 +97,9 @@ public abstract class Articulo {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + " | Autor: " + autor + " | Año de creación: " + anio + " | Descripción: "
-				+ descripcion + " | Precio: " + precio + "€ | Subastable: " + subastable + " | Estado: " + estado
-				+ " | Fecha de Venta: " + fechaVenta + " | ";
+		return "Nombre: " + nombre + "\nAutor: " + autor + "\nAño de creación: " + anio + "\nPrecio: "
+				+ precio + "€\nDescripción: " + descripcion + "\nSubastable: " + subastable + "\nEstado: " + estado
+				+ "\nFecha de Venta: " + fechaVenta;
 	}
 
 }
