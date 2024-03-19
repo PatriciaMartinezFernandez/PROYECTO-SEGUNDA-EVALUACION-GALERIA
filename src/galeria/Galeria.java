@@ -170,6 +170,41 @@ public class Galeria {
 
 	}
 
+	public void eliminarArticulo() {
+		String nombre;
+		boolean encontrado = false;
+		int i = 0;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
+		} else {
+			System.out.print("¿Qué artículo quieres eliminar? Introduce su nombre: ");
+			nombre = sc.nextLine();
+
+			do {
+				if (articulos[i].getNombre().equals(nombre)) {
+					encontrado = true;
+					for (int j = i; j < articulos.length - 1; j++) {
+						articulos[j] = articulos[j + 1];
+					}
+					Articulo[] temp = new Articulo[articulos.length - 1];
+					for (int k = 0; k < temp.length; k++) {
+						temp[k] = articulos[k];
+					}
+					articulos = temp;
+				} else {
+					i++;
+				}
+			} while (i < articulos.length && !encontrado);
+		}
+
+		if (!encontrado) {
+			System.out.println("Ese artículo no existe");
+		} else {
+			System.out.println("Artículo eliminado correctamente");
+		}
+	}
+
 	public void editarArticulo() {
 
 		String nombre, autor, descripcion;
@@ -225,6 +260,7 @@ public class Galeria {
 					case 3:
 						System.out.print("Introduce nuevo año: ");
 						anio = sc.nextInt();
+						sc.nextLine();
 						articulos[i].setAnio(anio);
 						System.out.println("Año cambiado");
 						break;
@@ -239,6 +275,7 @@ public class Galeria {
 					case 5:
 						System.out.print("Introduce nuevo precio: ");
 						precio = sc.nextDouble();
+						sc.nextLine();
 						articulos[i].setPrecio(precio);
 						System.out.println("Precio cambiado");
 						break;
@@ -264,6 +301,88 @@ public class Galeria {
 		}
 	}
 
+	public void almacenarArticulo() {
+
+		String nombre;
+		boolean encontrado = false;
+		int i = 0;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
+		} else {
+			System.out.print("¿Qué artículo quieres almacenar? Introduce su nombre: ");
+			nombre = sc.nextLine();
+
+			do {
+
+				if (articulos[i].getNombre().equals(nombre)) {
+
+					encontrado = true;
+
+					if (articulos[i].getEstado() == Estado.EN_ALMACEN) {
+						System.out.println("Este artículo ya está en el almacén");
+					} else if (articulos[i].getEstado() == Estado.VENDIDO) {
+						System.out.println("Este artículo ha sido vendido en subasta");
+					} else {
+						articulos[i].setEstado(Estado.EN_ALMACEN);
+						System.out.println("El artículo ha sido almacenado");
+					}
+
+				} else {
+					i++;
+				}
+
+			} while (!encontrado && i < articulos.length);
+
+			if (!encontrado) {
+				System.out.println("Ese artículo no existe");
+			}
+
+		}
+
+	}
+
+	public void exponerArticulo() {
+
+		String nombre;
+		boolean encontrado = false;
+		int i = 0;
+
+		if (articulos.length == 0) {
+			System.out.println("No hay artículos");
+		} else {
+			System.out.print("¿Qué artículo quieres exponer? Introduce su nombre: ");
+			nombre = sc.nextLine();
+
+			do {
+
+				if (articulos[i].getNombre().equals(nombre)) {
+
+					encontrado = true;
+
+					if (articulos[i].getEstado() == Estado.EN_EXPOSICION) {
+						System.out.println("Este artículo ya está en exposición");
+					} else if (articulos[i].getEstado() == Estado.VENDIDO) {
+						System.out.println("Este artículo ha sido vendido en subasta");
+					} else {
+						articulos[i].setEstado(Estado.EN_EXPOSICION);
+						System.out.println("El artículo ahora está expuesto en la galería");
+					}
+
+				} else {
+					i++;
+				}
+
+			} while (!encontrado && i < articulos.length);
+
+			if (!encontrado) {
+				System.out.println("Ese artículo no existe");
+			}
+
+		}
+
+	}
+
 	public void listarDesordenado() {
 
 		System.out.println("====== ARTICULOS ======");
@@ -283,6 +402,28 @@ public class Galeria {
 		}
 
 		System.out.println("=======================");
+	}
+
+	public void listarOrdenadoPorNombre() {
+
+		int menu = 0, i = 0;
+		Articulo[] ascendente = articulos;
+		Articulo[] descendente = articulos;
+
+		System.out.println("=======================");
+		System.out.println("1) Ascendentemente");
+		System.out.println("2) Descendentemente");
+		System.out.println("=======================");
+		menu = sc.nextInt();
+		sc.nextLine();
+
+		if (menu == 1) {
+
+		} else if (menu == 2) {
+
+		} else {
+			System.out.println("Opción inválida");
+		}
 
 	}
 

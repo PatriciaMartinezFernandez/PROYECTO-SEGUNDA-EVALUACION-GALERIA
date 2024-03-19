@@ -12,7 +12,7 @@ public abstract class Articulo {
 	protected int anio;
 	protected String descripcion;
 	protected double precio;
-	protected boolean subastable = false;
+	protected boolean subastable;
 	protected Estado estado;
 	protected LocalDate fechaVenta;
 

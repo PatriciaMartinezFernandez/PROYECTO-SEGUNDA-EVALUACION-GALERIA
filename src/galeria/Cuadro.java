@@ -25,12 +25,12 @@ public class Cuadro extends Articulo implements Subastable {
 
 		if (respuesta.equalsIgnoreCase("y")) {
 
-			subastable = true;
+			this.subastable = true;
 			System.out.println("Este cuadro ahora es subastable");
 
 		} else {
 
-			subastable = false;
+			this.subastable = false;
 			System.out.println("Este cuadro no se subastará");
 		}
 

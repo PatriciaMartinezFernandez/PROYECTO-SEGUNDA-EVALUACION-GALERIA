@@ -34,7 +34,7 @@ public class App {
 
 				case 1:
 					System.out.println("======= GESTIÓN =======");
-					System.out.println("1) Añadir articulo");
+					System.out.println("1) Añadir artículo");
 					System.out.println("2) Eliminar artículo");
 					System.out.println("3) Editar artículo");
 					System.out.println("4) Almacenar artículo");
@@ -43,7 +43,7 @@ public class App {
 					System.out.println("=======================");
 					menu = sc.nextInt();
 					sc.nextLine();
-					
+
 					switch (menu) {
 
 					default:
@@ -54,9 +54,22 @@ public class App {
 						galeria.aniadirArticulo();
 						break;
 
+					case 2:
+						galeria.eliminarArticulo();
+						break;
+
 					case 3:
 						galeria.editarArticulo();
-						
+						break;
+
+					case 4:
+						galeria.almacenarArticulo();
+						break;
+
+					case 5:
+						galeria.exponerArticulo();
+						break;
+
 					case 6:
 						break;
 
@@ -87,12 +100,12 @@ public class App {
 						break;
 					}
 					break;
-					
+
 				case 4:
 					System.out.println("Cerrando programa...");
 					salir = true;
 					break;
-					
+
 				}
 
 			} catch (InputMismatchException e) {
