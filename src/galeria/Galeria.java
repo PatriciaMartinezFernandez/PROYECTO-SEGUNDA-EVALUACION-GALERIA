@@ -1,6 +1,7 @@
 package galeria;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -41,134 +42,137 @@ public class Galeria {
 		System.out.println("1) Cuadro");
 		System.out.println("2) Escultura");
 		System.out.println("=======================");
-		menu = sc.nextInt();
-		sc.nextLine();
-
-		if (menu == 1) {
-
-			System.out.print("Nombre del cuadro: ");
-			nombre = sc.nextLine();
-			System.out.print("Autor del cuadro: ");
-			autor = sc.nextLine();
-			System.out.print("Año del cuadro: ");
-			anio = sc.nextInt();
-			sc.nextLine();
-			System.out.println("Descripción del cuadro: ");
-			descripcion = sc.nextLine();
-			System.out.print("Precio del cuadro: ");
-			precio = sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Técnica del cuadro: ");
-			System.out.println("1) Acrilico");
-			System.out.println("2) Oleo");
-			System.out.println("3) Acuarela");
-			System.out.println("4) Gouache");
+		try {
 			menu = sc.nextInt();
 			sc.nextLine();
 
-			switch (menu) {
+			if (menu == 1) {
 
-			default:
-				System.out.println("Opción no válida.");
-				break;
+				System.out.print("Nombre del cuadro: ");
+				nombre = sc.nextLine();
+				System.out.print("Autor del cuadro: ");
+				autor = sc.nextLine();
+				System.out.print("Año del cuadro: ");
+				anio = sc.nextInt();
+				sc.nextLine();
+				System.out.println("Descripción del cuadro: ");
+				descripcion = sc.nextLine();
+				System.out.print("Precio del cuadro: ");
+				precio = sc.nextDouble();
+				sc.nextLine();
+				System.out.println("Técnica del cuadro: ");
+				System.out.println("1) Acrilico");
+				System.out.println("2) Oleo");
+				System.out.println("3) Acuarela");
+				System.out.println("4) Gouache");
+				menu = sc.nextInt();
+				sc.nextLine();
 
-			case 1:
-				tecnica = Tecnica.ACRILICO;
-				break;
+				switch (menu) {
 
-			case 2:
-				tecnica = Tecnica.OLEO;
-				break;
+				default:
+					System.out.println("Opción no válida.");
+					break;
 
-			case 3:
-				tecnica = Tecnica.ACUARELA;
-				break;
+				case 1:
+					tecnica = Tecnica.ACRILICO;
+					break;
 
-			case 4:
-				tecnica = Tecnica.GOUACHE;
-				break;
+				case 2:
+					tecnica = Tecnica.OLEO;
+					break;
 
+				case 3:
+					tecnica = Tecnica.ACUARELA;
+					break;
+
+				case 4:
+					tecnica = Tecnica.GOUACHE;
+					break;
+
+				}
+
+				Articulo[] temp = articulos;
+				articulos = new Articulo[articulos.length + 1];
+
+				for (int i = 0; i < temp.length; i++) {
+					articulos[i] = temp[i];
+				}
+
+				articulos[articulos.length - 1] = new Cuadro(nombre, autor, anio, descripcion, precio, tecnica);
+
+				articulos[articulos.length - 1].setSubastable(cuadro.articuloSubastable());
+
+				System.out.println("=======================");
+
+			} else if (menu == 2) {
+
+				System.out.print("Nombre de la escultura: ");
+				nombre = sc.nextLine();
+				System.out.print("Autor de la escultura: ");
+				autor = sc.nextLine();
+				System.out.print("Año de la escultura: ");
+				anio = sc.nextInt();
+				sc.nextLine();
+				System.out.println("Descripción de la escultura: ");
+				descripcion = sc.nextLine();
+				System.out.print("Precio de la escultura: ");
+				precio = sc.nextDouble();
+				sc.nextLine();
+				System.out.println("Material de la escultura: ");
+				System.out.println("1) Arcilla");
+				System.out.println("2) Piedra");
+				System.out.println("3) Madera");
+				System.out.println("4) Marfil");
+				menu = sc.nextInt();
+				sc.nextLine();
+
+				switch (menu) {
+
+				default:
+					System.out.println("Opción no válida");
+					break;
+
+				case 1:
+					material = Material.ARCILLA;
+					break;
+
+				case 2:
+					material = Material.PIEDRA;
+					;
+					break;
+
+				case 3:
+					material = Material.MADERA;
+					break;
+
+				case 4:
+					material = Material.MARFIL;
+					break;
+
+				}
+
+				Articulo[] temp = articulos;
+				articulos = new Articulo[articulos.length + 1];
+
+				for (int i = 0; i < temp.length; i++) {
+					articulos[i] = temp[i];
+				}
+
+				articulos[articulos.length - 1] = new Escultura(nombre, autor, anio, descripcion, precio, material);
+
+				articulos[articulos.length - 1].setSubastable(escultura.articuloSubastable());
+
+				System.out.println("=======================");
+
+			} else {
+				System.out.println("Opción inválida");
+				System.out.println("=======================");
 			}
-
-			Articulo[] temp = articulos;
-			articulos = new Articulo[articulos.length + 1];
-
-			for (int i = 0; i < temp.length; i++) {
-				articulos[i] = temp[i];
-			}
-
-			articulos[articulos.length - 1] = new Cuadro(nombre, autor, anio, descripcion, precio, tecnica);
-
-			articulos[articulos.length - 1].setSubastable(cuadro.articuloSubastable());
-
-			System.out.println("=======================");
-
-		} else if (menu == 2) {
-
-			System.out.print("Nombre de la escultura: ");
-			nombre = sc.nextLine();
-			System.out.print("Autor de la escultura: ");
-			autor = sc.nextLine();
-			System.out.print("Año de la escultura: ");
-			anio = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Respuesta inválida. Introduce un número");
 			sc.nextLine();
-			System.out.println("Descripción de la escultura: ");
-			descripcion = sc.nextLine();
-			System.out.print("Precio de la escultura: ");
-			precio = sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Material de la escultura: ");
-			System.out.println("1) Arcilla");
-			System.out.println("2) Piedra");
-			System.out.println("3) Madera");
-			System.out.println("4) Marfil");
-			menu = sc.nextInt();
-			sc.nextLine();
-
-			switch (menu) {
-
-			default:
-				System.out.println("Opción no válida.");
-				break;
-
-			case 1:
-				material = Material.ARCILLA;
-				break;
-
-			case 2:
-				material = Material.PIEDRA;
-				;
-				break;
-
-			case 3:
-				material = Material.MADERA;
-				break;
-
-			case 4:
-				material = Material.MARFIL;
-				break;
-
-			}
-
-			Articulo[] temp = articulos;
-			articulos = new Articulo[articulos.length + 1];
-
-			for (int i = 0; i < temp.length; i++) {
-				articulos[i] = temp[i];
-			}
-
-			articulos[articulos.length - 1] = new Escultura(nombre, autor, anio, descripcion, precio, material);
-
-			articulos[articulos.length - 1].setSubastable(escultura.articuloSubastable());
-
-			System.out.println("=======================");
-
-		} else {
-			System.out.println("Opción inválida.");
-			System.out.println("=======================");
-
 		}
-
 	}
 
 	public void eliminarArticulo() {
@@ -235,7 +239,13 @@ public class Galeria {
 					System.out.println("5) Precio");
 					System.out.println("6) Subastable");
 					System.out.println("=====================");
-					menu = sc.nextInt();
+					try {
+						menu = sc.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("Respuesta inválida. Introduce un número");
+						sc.nextLine();
+						continue;
+					}
 					sc.nextLine();
 
 					switch (menu) {
@@ -260,7 +270,13 @@ public class Galeria {
 
 					case 3:
 						System.out.print("Introduce nuevo año: ");
-						anio = sc.nextInt();
+						try {
+							anio = sc.nextInt();
+						} catch (InputMismatchException e) {
+							System.out.println("Respuesta inválida. Introduce un número");
+							sc.nextLine();
+							continue;
+						}
 						sc.nextLine();
 						articulos[i].setAnio(anio);
 						System.out.println("Año cambiado");
@@ -275,7 +291,13 @@ public class Galeria {
 
 					case 5:
 						System.out.print("Introduce nuevo precio: ");
-						precio = sc.nextDouble();
+						try {
+							precio = sc.nextDouble();
+						} catch (InputMismatchException e) {
+							System.out.println("Respuesta inválida. Introduce un número");
+							sc.nextLine();
+							continue;
+						}
 						sc.nextLine();
 						articulos[i].setPrecio(precio);
 						System.out.println("Precio cambiado");
@@ -296,8 +318,8 @@ public class Galeria {
 
 			} while (!encontrado && i < articulos.length);
 
-			if (encontrado == false) {
-				System.out.println("Ese artículo no existe.");
+			if (!encontrado) {
+				System.out.println("Ese artículo no existe");
 			}
 		}
 	}
@@ -699,7 +721,7 @@ public class Galeria {
 				System.out.println("El artículo vendido es: " + articuloVendido.getNombre());
 				System.out.println("============================");
 			} else {
-				System.out.println("No hay suficientes artículos para iniciar la subasta.");
+				System.out.println("No hay suficientes artículos para iniciar la subasta. Necesarios 5 artículos subastables");
 			}
 		}
 	}

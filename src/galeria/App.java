@@ -14,15 +14,13 @@ public class App {
 		Galeria galeria = new Galeria();
 
 		do {
-
+			System.out.println("\n======= GALERIA =======");
+			System.out.println("1) Gestión de artículos");
+			System.out.println("2) Listar artículos");
+			System.out.println("3) Iniciar subasta");
+			System.out.println("4) Salir");
+			System.out.println("=======================");
 			try {
-
-				System.out.println("\n======= GALERIA =======");
-				System.out.println("1) Gestión de artículos");
-				System.out.println("2) Listar artículos");
-				System.out.println("3) Iniciar subasta");
-				System.out.println("4) Salir");
-				System.out.println("=======================");
 				menu = sc.nextInt();
 				sc.nextLine();
 
@@ -75,6 +73,7 @@ public class App {
 
 					}
 					break;
+
 				case 2:
 					System.out.println("======= LISTADO =======");
 					System.out.println("1) Listar desordenado");
@@ -151,6 +150,6 @@ public class App {
 			}
 		} while (!salir);
 
+		sc.close();
 	}
-
 }
