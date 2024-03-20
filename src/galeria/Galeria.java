@@ -1,5 +1,7 @@
 package galeria;
 
+import java.time.LocalDate;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Galeria {
@@ -104,7 +106,6 @@ public class Galeria {
 		} else if (menu == 2) {
 
 			System.out.print("Nombre de la escultura: ");
-			nombre = sc.nextLine();
 			nombre = sc.nextLine();
 			System.out.print("Autor de la escultura: ");
 			autor = sc.nextLine();
@@ -581,7 +582,7 @@ public class Galeria {
 		int contadorVendidos = 0;
 
 		for (Articulo articulo : articulos) {
-			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+			if (articulo.getEstado().equals(Estado.VENDIDO)) {
 				contadorVendidos++;
 			}
 		}
@@ -591,7 +592,7 @@ public class Galeria {
 		int indiceVendidos = 0;
 
 		for (Articulo articulo : articulos) {
-			if (articulo.getEstado().equals(Estado.EN_EXPOSICION)) {
+			if (articulo.getEstado().equals(Estado.VENDIDO)) {
 				vendidos[indiceVendidos] = articulo;
 				indiceVendidos++;
 			}
@@ -638,6 +639,69 @@ public class Galeria {
 			}
 		}
 
+	}
+
+	private int contarSubastables() {
+
+		int contadorSubastables = 0;
+
+		for (Articulo articulo : articulos) {
+			if (articulo.isSubastable() == true) {
+				contadorSubastables++;
+			}
+		}
+
+		return contadorSubastables;
+
+	}
+
+	public void iniciarSubasta() {
+		if (contarSubastables() == 0) {
+			System.out.println("No hay artículos subastables");
+		} else {
+			int[] indicesSubastablesNoVendidos = new int[contarSubastables()];
+			int contador = 0;
+
+			for (int i = 0; i < articulos.length; i++) {
+				if (articulos[i].isSubastable() && !articulos[i].getEstado().equals(Estado.VENDIDO)) {
+					indicesSubastablesNoVendidos[contador] = i;
+					contador++;
+				}
+			}
+
+			if (contador >= 5) {
+				Random random = new Random();
+
+				Articulo[] articulosEnSubasta = new Articulo[5];
+				boolean[] seleccionados = new boolean[contador];
+
+				System.out.println("=== ARTICULOS EN SUBASTA ===");
+
+				for (int i = 0; i < 5; i++) {
+					int indiceAleatorio;
+					do {
+						indiceAleatorio = random.nextInt(contador);
+					} while (seleccionados[indiceAleatorio]);
+
+					seleccionados[indiceAleatorio] = true;
+
+					int indiceArticuloSeleccionado = indicesSubastablesNoVendidos[indiceAleatorio];
+					Articulo articuloSeleccionado = articulos[indiceArticuloSeleccionado];
+					articulosEnSubasta[i] = articuloSeleccionado;
+					System.out.println("Artículo " + (i + 1) + ": " + articuloSeleccionado.getNombre());
+				}
+
+				int indiceGanador = random.nextInt(5);
+				Articulo articuloVendido = articulosEnSubasta[indiceGanador];
+				articuloVendido.setEstado(Estado.VENDIDO);
+				articuloVendido.setFechaVenta(LocalDate.now());
+				System.out.println("============================");
+				System.out.println("El artículo vendido es: " + articuloVendido.getNombre());
+				System.out.println("============================");
+			} else {
+				System.out.println("No hay suficientes artículos para iniciar la subasta.");
+			}
+		}
 	}
 
 }
