@@ -23,7 +23,7 @@ La gestión se basa en la creación, eliminación y edición de los artículos.
 
 3. Listar artículos.
 
-Imprimir los artíclos como se indique, desordenados, ordenados por nombre año o autor y los artículos que ya han sido subastados.
+Imprimir los artíclos como se indique, desordenados, ordenados alfabéticamente ascendente o descendente, ordenados por año, ordenados por autor, guardados en el almacén, expuestos en la galería, vendidos en una subasta y los subastables.
 
 4. Control de artículos.
 
@@ -31,4 +31,4 @@ Los artículos pueden estar guardados en el almacén, expuestos en la galería o
 
 5. Subastas
 
-Iniciar subastas en las que los artículos subastables pueden ser vendidos, saldrán ciclicamente en grupos de 5 artículos y aleatoriamente se venderá uno de ellos.
+Iniciar subastas en las que los artículos subastables pueden ser vendidos, busca los artículos que son subastables, de ellos aleatoriamente se queda con 5 y de esos 5 aleatoriamente se elige uno, el que salga será vendido.
