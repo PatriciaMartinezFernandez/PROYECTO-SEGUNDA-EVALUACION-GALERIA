@@ -1,14 +1,36 @@
 package galeria;
 
+/**
+ * La clase Escultura representa una escultura que puede ser exhibida en una
+ * galería, almacenada en un almacén o vendida en una subasta. Esta clase
+ * extiende de Articulo e implementa la interfaz Subastable.
+ */
 
 public class Escultura extends Articulo implements Subastable {
 
 	// Variable
+
 	private Material material;
 
 	// Constructores
+
+	/**
+	 * Constructor vacío.
+	 */
+
 	public Escultura() {
 	}
+
+	/**
+	 * Constructor con parámetros.
+	 * 
+	 * @param nombre      El nombre de la escultura.
+	 * @param autor       El autor de la escultura.
+	 * @param anio        El año que fue hecha la escultura.
+	 * @param descripcion La descripción de la escultura.
+	 * @param precio      El precio de la escultura.
+	 * @param material    El material de la escultura.
+	 */
 
 	public Escultura(String nombre, String autor, int anio, String descripcion, double precio, Material material) {
 		super(nombre, autor, anio, descripcion, precio);
@@ -16,6 +38,13 @@ public class Escultura extends Articulo implements Subastable {
 	}
 
 	// Métodos
+
+	/**
+	 * Método para determinar si la escultura es subastable o no.
+	 * 
+	 * @return true si la escultura es subastable, false si no lo es.
+	 */
+
 	@Override
 	public boolean articuloSubastable() {
 		String respuesta = "";
@@ -39,6 +68,12 @@ public class Escultura extends Articulo implements Subastable {
 
 		return subastable;
 	}
+
+	/**
+	 * Método para imprimir los datos de la escultura.
+	 * 
+	 * @return Una cadena que representa la escultura.
+	 */
 
 	@Override
 	public String toString() {

@@ -3,6 +3,12 @@ package galeria;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * La clase App representa la aplicación principal que gestiona una galería de
+ * arte. Permite al usuario interactuar con la galería mediante un menú de
+ * opciones.
+ */
+
 public class App {
 
 	static Scanner sc = new Scanner(System.in);
