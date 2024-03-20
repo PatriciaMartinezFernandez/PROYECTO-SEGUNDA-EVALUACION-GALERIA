@@ -19,7 +19,7 @@ Cuenta con todas las opciones de gestión y listado descritas abajo.
 
 2. Gestionar artículos.
    
-La gestión se basa en la creación, eliminación y edición de los artículos.
+La gestión se basa en la creación, eliminación y edición de los artículos. También almacenarlos o exponerlos.
 
 3. Listar artículos.
 
